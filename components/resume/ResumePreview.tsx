@@ -2,8 +2,8 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 import { ResumeFormData, TemplateType } from "@/types/resume";
-import { TEMPLATE_CONFIGS } from "@/lib/constants";
 import { SimpleTemplate } from "./templates/SimpleTemplate";
 import { MagicTemplate } from "./templates/MagicTemplate";
 import { GeometricTemplate } from "./templates/GeometricTemplate";
@@ -21,6 +21,31 @@ export function ResumePreview({
   onTemplateChange,
   onExport,
 }: ResumePreviewProps) {
+  const t = useTranslations();
+  const tPreview = useTranslations("preview");
+  const tTemplates = useTranslations("templates");
+
+  const TEMPLATE_CONFIGS = [
+    {
+      id: "simple" as TemplateType,
+      name: tTemplates("simple.name"),
+      description: tTemplates("simple.description"),
+      icon: "📄",
+    },
+    {
+      id: "magic" as TemplateType,
+      name: tTemplates("magic.name"),
+      description: tTemplates("magic.description"),
+      icon: "✨",
+    },
+    {
+      id: "geometric" as TemplateType,
+      name: tTemplates("geometric.name"),
+      description: tTemplates("geometric.description"),
+      icon: "🔷",
+    },
+  ];
+
   const renderTemplate = () => {
     const props = { formData };
 
@@ -41,7 +66,7 @@ export function ResumePreview({
       {/* Template Selector */}
       <div className="bg-zinc-900/50 backdrop-blur-xl rounded-2xl border border-zinc-800 p-6 shadow-2xl">
         <h2 className="text-xl font-bold text-zinc-100 mb-4">
-          テンプレートを選択
+          {tPreview("selectTemplate")}
         </h2>
         <div className="grid grid-cols-3 gap-4">
           {TEMPLATE_CONFIGS.map((template) => (
@@ -78,7 +103,7 @@ export function ResumePreview({
       {/* Preview */}
       <div className="bg-zinc-900/50 backdrop-blur-xl rounded-2xl border border-zinc-800 p-6 shadow-2xl">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-zinc-100">プレビュー</h2>
+          <h2 className="text-xl font-bold text-zinc-100">{tPreview("preview")}</h2>
           <button
             onClick={onExport}
             className="px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all transform hover:scale-105 active:scale-95"
@@ -97,7 +122,7 @@ export function ResumePreview({
                   d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 />
               </svg>
-              PDFで保存
+              {tPreview("saveAsPdf")}
             </span>
           </button>
         </div>
@@ -109,7 +134,7 @@ export function ResumePreview({
         </div>
 
         <p className="mt-4 text-center text-sm text-zinc-500">
-          PDFで保存ボタンを押すと、この履歴書をダウンロードできます
+          {tPreview("help")}
         </p>
       </div>
     </div>

@@ -1,8 +1,13 @@
 // components/resume/templates/MagicTemplate.tsx
+"use client";
+
 import React from "react";
+import { useTranslations } from "next-intl";
 import { TemplateProps } from "@/types/resume";
 
 export function MagicTemplate({ formData }: TemplateProps) {
+  const t = useTranslations("resume");
+
   return (
     <div className="relative min-h-[600px]">
       {/* 背景パターン */}
@@ -46,7 +51,7 @@ export function MagicTemplate({ formData }: TemplateProps) {
                 backgroundClip: "text",
               }}
             >
-              推し活履歴書
+              {t("title")}
             </h1>
             <div
               className="h-1 rounded-full"
@@ -71,7 +76,7 @@ export function MagicTemplate({ formData }: TemplateProps) {
               >
                 <div className="flex gap-3">
                   <span className="text-sm font-semibold text-purple-700 min-w-[100px]">
-                    氏名
+                    {t("fields.name")}
                   </span>
                   <span className="text-sm text-zinc-900 break-words">
                     {formData.name}
@@ -93,7 +98,7 @@ export function MagicTemplate({ formData }: TemplateProps) {
                 <div className="relative w-28 h-28 rounded-3xl overflow-hidden ring-4 ring-white">
                   <img
                     src={formData.photo}
-                    alt="推しの写真"
+                    alt={t("fields.photoAlt")}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -124,13 +129,13 @@ export function MagicTemplate({ formData }: TemplateProps) {
                   backgroundClip: "text",
                 }}
               >
-                推し情報
+                {t("sections.oshiInfo")}
               </h3>
             </div>
             <div className="space-y-3 pl-10">
               <div className="flex gap-3">
                 <span className="text-sm font-semibold text-zinc-500 min-w-[100px]">
-                  推しの名前
+                  {t("fields.oshiName")}
                 </span>
                 <span className="text-sm text-zinc-900">
                   {formData.oshiName}
@@ -139,7 +144,7 @@ export function MagicTemplate({ formData }: TemplateProps) {
               {formData.fanName && (
                 <div className="flex gap-3">
                   <span className="text-sm font-semibold text-zinc-500 min-w-[100px]">
-                    ファン名
+                    {t("fields.fanName")}
                   </span>
                   <span className="text-sm text-zinc-900">
                     {formData.fanName}
@@ -149,7 +154,7 @@ export function MagicTemplate({ formData }: TemplateProps) {
               {formData.startDate && (
                 <div className="flex gap-3">
                   <span className="text-sm font-semibold text-zinc-500 min-w-[100px]">
-                    推し活開始
+                    {t("fields.startDate")}
                   </span>
                   <span className="text-sm text-zinc-900">
                     {formData.startDate}
@@ -182,7 +187,7 @@ export function MagicTemplate({ formData }: TemplateProps) {
                   backgroundClip: "text",
                 }}
               >
-                好きな作品・楽曲
+                {t("sections.favoriteWork")}
               </h3>
             </div>
             <p className="text-sm text-zinc-700 leading-relaxed whitespace-pre-wrap break-words overflow-wrap-anywhere pl-10">
@@ -213,7 +218,7 @@ export function MagicTemplate({ formData }: TemplateProps) {
                   backgroundClip: "text",
                 }}
               >
-                忘れられないエピソード
+                {t("sections.favoriteScene")}
               </h3>
             </div>
             <p className="text-sm text-zinc-700 leading-relaxed whitespace-pre-wrap break-words overflow-wrap-anywhere pl-10">
@@ -244,7 +249,7 @@ export function MagicTemplate({ formData }: TemplateProps) {
                   backgroundClip: "text",
                 }}
               >
-                推しの魅力
+                {t("sections.appealPoint")}
               </h3>
             </div>
             <p className="text-sm text-zinc-700 leading-relaxed whitespace-pre-wrap break-words overflow-wrap-anywhere pl-10">
@@ -275,7 +280,7 @@ export function MagicTemplate({ formData }: TemplateProps) {
                   backgroundClip: "text",
                 }}
               >
-                今後の目標
+                {t("sections.future")}
               </h3>
             </div>
             <p className="text-sm text-zinc-700 leading-relaxed whitespace-pre-wrap break-words overflow-wrap-anywhere pl-10">

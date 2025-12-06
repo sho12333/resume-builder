@@ -56,10 +56,10 @@ export class ErrorBoundary extends Component<Props, State> {
                 </svg>
               </div>
               <h2 className="text-2xl font-bold text-zinc-100 mb-2">
-                エラーが発生しました
+                Error Occurred
               </h2>
               <p className="text-zinc-400 mb-6">
-                申し訳ございません。予期しないエラーが発生しました。
+                We apologize. An unexpected error has occurred.
               </p>
               {this.state.error && (
                 <div className="bg-zinc-950 border border-zinc-800 rounded-xl p-4 mb-6 text-left">
@@ -72,7 +72,7 @@ export class ErrorBoundary extends Component<Props, State> {
                 onClick={() => window.location.reload()}
                 className="px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all"
               >
-                ページを再読み込み
+                Reload Page
               </button>
             </div>
           </div>

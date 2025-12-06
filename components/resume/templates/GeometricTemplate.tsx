@@ -1,8 +1,13 @@
 // components/resume/templates/GeometricTemplate.tsx
+"use client";
+
 import React from "react";
+import { useTranslations } from "next-intl";
 import { TemplateProps } from "@/types/resume";
 
 export function GeometricTemplate({ formData }: TemplateProps) {
+  const t = useTranslations("resume");
+
   return (
     <div
       className="relative min-h-[600px]"
@@ -84,7 +89,7 @@ export function GeometricTemplate({ formData }: TemplateProps) {
               </div>
               <div className="flex-1">
                 <h1 className="text-3xl font-bold text-zinc-900 tracking-wider uppercase border-b-4 border-zinc-900 pb-2">
-                  推し活履歴書
+                  {t("title")}
                 </h1>
               </div>
             </div>
@@ -95,7 +100,7 @@ export function GeometricTemplate({ formData }: TemplateProps) {
                   <div className="relative w-28 h-28 overflow-hidden">
                     <img
                       src={formData.photo}
-                      alt="推しの写真"
+                      alt={t("fields.photoAlt")}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -109,7 +114,7 @@ export function GeometricTemplate({ formData }: TemplateProps) {
           <div className="mb-8 border-l-4 border-zinc-900 pl-4">
             <div className="flex gap-4">
               <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider min-w-[100px]">
-                Name
+                {t("fields.name")}
               </span>
               <span className="text-sm text-zinc-900 font-medium break-words">
                 {formData.name}
@@ -122,13 +127,13 @@ export function GeometricTemplate({ formData }: TemplateProps) {
           <div className="mb-8">
             <div className="bg-zinc-900 text-white px-4 py-2 mb-4">
               <h3 className="text-sm font-bold uppercase tracking-widest">
-                推し情報
+                {t("sections.oshiInfo")}
               </h3>
             </div>
             <div className="space-y-3 pl-4">
               <div className="flex gap-4 border-l-2 border-zinc-300 pl-4">
                 <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider min-w-[100px]">
-                  Oshi Name
+                  {t("fields.oshiName")}
                 </span>
                 <span className="text-sm text-zinc-900">
                   {formData.oshiName}
@@ -137,7 +142,7 @@ export function GeometricTemplate({ formData }: TemplateProps) {
               {formData.fanName && (
                 <div className="flex gap-4 border-l-2 border-zinc-300 pl-4">
                   <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider min-w-[100px]">
-                    Fan Name
+                    {t("fields.fanName")}
                   </span>
                   <span className="text-sm text-zinc-900">
                     {formData.fanName}
@@ -147,7 +152,7 @@ export function GeometricTemplate({ formData }: TemplateProps) {
               {formData.startDate && (
                 <div className="flex gap-4 border-l-2 border-zinc-300 pl-4">
                   <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider min-w-[100px]">
-                    Since
+                    {t("fields.startDate")}
                   </span>
                   <span className="text-sm text-zinc-900">
                     {formData.startDate}
@@ -162,7 +167,7 @@ export function GeometricTemplate({ formData }: TemplateProps) {
           <div className="mb-8">
             <div className="bg-zinc-900 text-white px-4 py-2 mb-4">
               <h3 className="text-sm font-bold uppercase tracking-widest">
-                好きな作品・楽曲
+                {t("sections.favoriteWork")}
               </h3>
             </div>
             <div className="border-l-4 border-zinc-300 pl-4">
@@ -177,7 +182,7 @@ export function GeometricTemplate({ formData }: TemplateProps) {
           <div className="mb-8">
             <div className="bg-zinc-900 text-white px-4 py-2 mb-4">
               <h3 className="text-sm font-bold uppercase tracking-widest">
-                忘れられないエピソード
+                {t("sections.favoriteScene")}
               </h3>
             </div>
             <div className="border-l-4 border-zinc-300 pl-4">
@@ -192,7 +197,7 @@ export function GeometricTemplate({ formData }: TemplateProps) {
           <div className="mb-8">
             <div className="bg-zinc-900 text-white px-4 py-2 mb-4">
               <h3 className="text-sm font-bold uppercase tracking-widest">
-                推しの魅力
+                {t("sections.appealPoint")}
               </h3>
             </div>
             <div className="border-l-4 border-zinc-300 pl-4">
@@ -207,7 +212,7 @@ export function GeometricTemplate({ formData }: TemplateProps) {
           <div className="mb-8">
             <div className="bg-zinc-900 text-white px-4 py-2 mb-4">
               <h3 className="text-sm font-bold uppercase tracking-widest">
-                今後の目標
+                {t("sections.future")}
               </h3>
             </div>
             <div className="border-l-4 border-zinc-300 pl-4">

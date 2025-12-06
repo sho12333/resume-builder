@@ -2,13 +2,15 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { useTranslations } from "next-intl";
 import { TemplateType } from "@/types/resume";
-import { PDF_CONFIG, AD_MODAL_DURATION } from "@/lib/constants";
+import { AD_MODAL_DURATION } from "@/lib/constants";
 
 /**
  * Custom hook for exporting resume to PDF
  */
 export function usePDFExport(selectedTemplate: TemplateType) {
+  const t = useTranslations("pdf");
   const [isExporting, setIsExporting] = useState(false);
   const [exportError, setExportError] = useState<string | null>(null);
 
@@ -61,27 +63,27 @@ export function usePDFExport(selectedTemplate: TemplateType) {
       // Convert canvas to PDF
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF({
-        orientation: PDF_CONFIG.orientation,
-        unit: PDF_CONFIG.unit,
-        format: PDF_CONFIG.format,
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
       });
 
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-      pdf.save(PDF_CONFIG.fileName);
+      pdf.save(t("fileName"));
     } catch (error) {
       console.error("PDF export error:", error);
       setExportError(
         error instanceof Error
           ? error.message
-          : "PDFの生成に失敗しました。もう一度お試しください。"
+          : "PDF generation failed. Please try again."
       );
     } finally {
       setIsExporting(false);
     }
-  }, [selectedTemplate, showAdModal]);
+  }, [selectedTemplate, showAdModal, t]);
 
   return {
     exportToPDF,
