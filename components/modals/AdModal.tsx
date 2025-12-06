@@ -1,4 +1,6 @@
 // components/modals/AdModal.tsx
+"use client";
+
 import React from "react";
 
 export function AdModal() {
@@ -40,10 +42,25 @@ export function AdModal() {
             5秒後にPDFのダウンロードが開始されます
           </p>
           <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden">
-            <div className="h-full bg-zinc-500 rounded-full animate-pulse"></div>
+            <div
+              className="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 rounded-full transition-all duration-5000 ease-linear"
+              style={{
+                animation: 'progressBar 5s linear forwards'
+              }}
+            />
           </div>
         </div>
       </div>
+      <style jsx>{`
+        @keyframes progressBar {
+          from {
+            width: 0%;
+          }
+          to {
+            width: 100%;
+          }
+        }
+      `}</style>
     </dialog>
   );
 }
