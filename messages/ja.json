@@ -1,0 +1,129 @@
+{
+  "app": {
+    "name": "oshiresume",
+    "title": "推し活履歴書ビルダー",
+    "subtitle": "あなたの推し活を素敵な履歴書に",
+    "description": "推し活の歴史を美しい履歴書に"
+  },
+  "header": {
+    "title": "推し活履歴書ビルダー",
+    "subtitle": "あなたの推し活を素敵な履歴書に",
+    "free": "無料で作成",
+    "noRegistration": "登録不要"
+  },
+  "footer": {
+    "appName": "推し活履歴書ビルダー",
+    "copyright": "© 2024 All rights reserved"
+  },
+  "forms": {
+    "basicInfo": {
+      "title": "基本情報",
+      "name": {
+        "label": "氏名 (ペンネーム可)",
+        "placeholder": "例: 推し活太郎"
+      },
+      "photo": {
+        "label": "推しの写真",
+        "change": "変更",
+        "select": "画像を選択",
+        "description": "推しの写真やイラストをアップロードしてください",
+        "format": "(JPEG、PNG、WebP / 最大5MB)",
+        "alt": "アップロードされた写真"
+      }
+    },
+    "oshiInfo": {
+      "title": "推し情報",
+      "oshiName": {
+        "label": "推しの名前",
+        "placeholder": "例: 推しアイドル",
+        "required": "*"
+      },
+      "fanName": {
+        "label": "ファン名・ファンダム名",
+        "placeholder": "例: 〇〇担、△△ファン"
+      },
+      "startDate": {
+        "label": "推し活開始日",
+        "help": "推しを好きになった日、ファンになった日を選択してください"
+      }
+    },
+    "activityRecord": {
+      "title": "推し活の記録",
+      "favoriteWork": {
+        "label": "好きな作品・楽曲",
+        "placeholder": "推しの作品や楽曲で特に好きなものを書いてください"
+      },
+      "favoriteScene": {
+        "label": "忘れられないエピソード",
+        "placeholder": "推しとの思い出や、忘れられない出来事を書いてください"
+      },
+      "appealPoint": {
+        "label": "推しの魅力",
+        "placeholder": "推しのどんなところが好きですか？魅力を存分に語ってください"
+      },
+      "future": {
+        "label": "今後の目標",
+        "placeholder": "これからの推し活で達成したいこと、やりたいことを書いてください"
+      }
+    }
+  },
+  "preview": {
+    "selectTemplate": "テンプレートを選択",
+    "preview": "プレビュー",
+    "saveAsPdf": "PDFで保存",
+    "help": "PDFで保存ボタンを押すと、この履歴書をダウンロードできます"
+  },
+  "templates": {
+    "simple": {
+      "name": "シンプル",
+      "description": "清潔感のあるシンプルなデザイン"
+    },
+    "magic": {
+      "name": "マジカル",
+      "description": "カラフルで華やかなデザイン"
+    },
+    "geometric": {
+      "name": "ジオメトリック",
+      "description": "モダンな幾何学デザイン"
+    }
+  },
+  "resume": {
+    "title": "推し活履歴書",
+    "sections": {
+      "basicInfo": "基本情報",
+      "oshiInfo": "推し情報",
+      "favoriteWork": "好きな作品・楽曲",
+      "favoriteScene": "忘れられないエピソード",
+      "appealPoint": "推しの魅力",
+      "future": "今後の目標"
+    },
+    "fields": {
+      "name": "氏名",
+      "oshiName": "推しの名前",
+      "fanName": "ファン名",
+      "startDate": "推し活開始",
+      "photoAlt": "推しの写真"
+    }
+  },
+  "adModal": {
+    "title": "広告を表示しています",
+    "adArea": "Google AdSense 広告エリア",
+    "placeholder": "実装時はここに広告コードを配置",
+    "countdown": "5秒後にPDFのダウンロードが開始されます"
+  },
+  "error": {
+    "title": "エラーが発生しました",
+    "message": "申し訳ございません。予期しないエラーが発生しました。",
+    "reload": "ページを再読み込み",
+    "imageFormat": "対応していない画像形式です。JPEG、PNG、WebPのいずれかを選択してください。",
+    "imageSize": "ファイルサイズが大きすぎます。5MB以下の画像を選択してください。",
+    "fileReadFailed": "ファイルの読み込みに失敗しました"
+  },
+  "pdf": {
+    "fileName": "推し活履歴書.pdf"
+  },
+  "locale": {
+    "ja": "日本語",
+    "en": "English"
+  }
+}

@@ -12,14 +12,14 @@ export function validateImageFile(file: File): {
   if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
     return {
       valid: false,
-      error: "対応していない画像形式です。JPEG、PNG、WebPのいずれかを選択してください。",
+      error: "Unsupported image format. Please select JPEG, PNG, or WebP.",
     };
   }
 
   if (file.size > MAX_IMAGE_SIZE) {
     return {
       valid: false,
-      error: "ファイルサイズが大きすぎます。5MB以下の画像を選択してください。",
+      error: "File size is too large. Please select an image under 5MB.",
     };
   }
 
@@ -36,10 +36,10 @@ export function fileToDataURL(file: File): Promise<string> {
       if (e.target?.result) {
         resolve(e.target.result as string);
       } else {
-        reject(new Error("ファイルの読み込みに失敗しました"));
+        reject(new Error("Failed to read file"));
       }
     };
-    reader.onerror = () => reject(new Error("ファイルの読み込みに失敗しました"));
+    reader.onerror = () => reject(new Error("Failed to read file"));
     reader.readAsDataURL(file);
   });
 }
@@ -47,12 +47,12 @@ export function fileToDataURL(file: File): Promise<string> {
 /**
  * Formats a date string for display
  */
-export function formatDate(dateString: string): string {
+export function formatDate(dateString: string, locale: string = "en-US"): string {
   if (!dateString) return "";
 
   try {
     const date = new Date(dateString);
-    return date.toLocaleDateString("ja-JP", {
+    return date.toLocaleDateString(locale, {
       year: "numeric",
       month: "long",
       day: "numeric",

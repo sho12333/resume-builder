@@ -2,13 +2,16 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 
 export function AdModal() {
+  const t = useTranslations("adModal");
+
   return (
     <dialog id="ad_modal" className="modal backdrop-blur-sm">
       <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 max-w-2xl w-full shadow-2xl">
         <h3 className="text-xl font-semibold text-zinc-100 mb-6">
-          広告を表示しています
+          {t("title")}
         </h3>
 
         <div className="bg-zinc-950 border border-zinc-800 rounded-xl p-12 text-center min-h-[250px] flex items-center justify-center mb-6">
@@ -29,17 +32,17 @@ export function AdModal() {
               </svg>
             </div>
             <p className="text-zinc-300 font-medium mb-2">
-              Google AdSense 広告エリア
+              {t("adArea")}
             </p>
             <p className="text-zinc-500 text-sm">
-              実装時はここに広告コードを配置
+              {t("placeholder")}
             </p>
           </div>
         </div>
 
         <div className="text-center">
           <p className="text-zinc-400 text-sm mb-3">
-            5秒後にPDFのダウンロードが開始されます
+            {t("countdown")}
           </p>
           <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden">
             <div

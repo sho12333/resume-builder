@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useRef } from "react";
+import { useTranslations } from "next-intl";
 import { ResumeFormData, InputChangeHandler } from "@/types/resume";
 
 interface BasicInfoFormProps {
@@ -15,6 +16,7 @@ export function BasicInfoForm({
   onInputChange,
   onImageUpload,
 }: BasicInfoFormProps) {
+  const t = useTranslations("forms.basicInfo");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageClick = () => {
@@ -27,27 +29,27 @@ export function BasicInfoForm({
         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
           <span className="text-xl">👤</span>
         </div>
-        <h2 className="text-xl font-bold text-zinc-100">基本情報</h2>
+        <h2 className="text-xl font-bold text-zinc-100">{t("title")}</h2>
       </div>
 
       <div className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-zinc-300 mb-2">
-            氏名 (ペンネーム可)
+            {t("name.label")}
           </label>
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={onInputChange}
-            placeholder="例: 推し活太郎"
+            placeholder={t("name.placeholder")}
             className="w-full px-4 py-3 bg-zinc-950/50 border border-zinc-800 rounded-xl text-zinc-100 placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-zinc-300 mb-2">
-            推しの写真
+            {t("photo.label")}
           </label>
           <div className="flex items-start gap-4">
             {formData.photo ? (
@@ -55,7 +57,7 @@ export function BasicInfoForm({
                 <div className="w-32 h-32 rounded-2xl overflow-hidden border-2 border-zinc-700">
                   <img
                     src={formData.photo}
-                    alt="アップロードされた写真"
+                    alt={t("photo.alt")}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -64,7 +66,7 @@ export function BasicInfoForm({
                   onClick={handleImageClick}
                   className="absolute inset-0 bg-black/50 backdrop-blur-sm rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-sm font-medium"
                 >
-                  変更
+                  {t("photo.change")}
                 </button>
               </div>
             ) : (
@@ -87,7 +89,7 @@ export function BasicInfoForm({
                   />
                 </svg>
                 <span className="text-xs text-zinc-600 group-hover:text-blue-500 transition-colors">
-                  画像を選択
+                  {t("photo.select")}
                 </span>
               </button>
             )}
@@ -100,10 +102,10 @@ export function BasicInfoForm({
             />
             <div className="flex-1">
               <p className="text-sm text-zinc-500 leading-relaxed">
-                推しの写真やイラストをアップロードしてください
+                {t("photo.description")}
                 <br />
                 <span className="text-xs text-zinc-600">
-                  (JPEG、PNG、WebP / 最大5MB)
+                  {t("photo.format")}
                 </span>
               </p>
             </div>

@@ -1,0 +1,129 @@
+{
+  "app": {
+    "name": "oshiresume",
+    "title": "Oshi Resume Builder",
+    "subtitle": "Transform your fandom journey into a beautiful resume",
+    "description": "Create a beautiful resume from your fandom history"
+  },
+  "header": {
+    "title": "Oshi Resume Builder",
+    "subtitle": "Transform your fandom journey into a beautiful resume",
+    "free": "Free to create",
+    "noRegistration": "No registration"
+  },
+  "footer": {
+    "appName": "Oshi Resume Builder",
+    "copyright": "© 2024 All rights reserved"
+  },
+  "forms": {
+    "basicInfo": {
+      "title": "Basic Information",
+      "name": {
+        "label": "Name (Pen name allowed)",
+        "placeholder": "e.g., Fan Name"
+      },
+      "photo": {
+        "label": "Your Oshi's Photo",
+        "change": "Change",
+        "select": "Select Image",
+        "description": "Upload a photo or illustration of your oshi",
+        "format": "(JPEG, PNG, WebP / Max 5MB)",
+        "alt": "Uploaded photo"
+      }
+    },
+    "oshiInfo": {
+      "title": "Oshi Information",
+      "oshiName": {
+        "label": "Oshi's Name",
+        "placeholder": "e.g., Idol Name",
+        "required": "*"
+      },
+      "fanName": {
+        "label": "Fan Name / Fandom Name",
+        "placeholder": "e.g., Fan community name"
+      },
+      "startDate": {
+        "label": "Fan Activity Start Date",
+        "help": "Select the date you became a fan"
+      }
+    },
+    "activityRecord": {
+      "title": "Fan Activity Records",
+      "favoriteWork": {
+        "label": "Favorite Works / Songs",
+        "placeholder": "Write about your favorite works or songs by your oshi"
+      },
+      "favoriteScene": {
+        "label": "Unforgettable Episodes",
+        "placeholder": "Write about memorable moments and unforgettable experiences with your oshi"
+      },
+      "appealPoint": {
+        "label": "Oshi's Appeal",
+        "placeholder": "What do you love about your oshi? Share their charm to your heart's content"
+      },
+      "future": {
+        "label": "Future Goals",
+        "placeholder": "Write about what you want to achieve and do in your fan activities"
+      }
+    }
+  },
+  "preview": {
+    "selectTemplate": "Select Template",
+    "preview": "Preview",
+    "saveAsPdf": "Save as PDF",
+    "help": "Click the Save as PDF button to download this resume"
+  },
+  "templates": {
+    "simple": {
+      "name": "Simple",
+      "description": "Clean and simple design"
+    },
+    "magic": {
+      "name": "Magical",
+      "description": "Colorful and vibrant design"
+    },
+    "geometric": {
+      "name": "Geometric",
+      "description": "Modern geometric design"
+    }
+  },
+  "resume": {
+    "title": "Oshi Resume",
+    "sections": {
+      "basicInfo": "Basic Information",
+      "oshiInfo": "Oshi Information",
+      "favoriteWork": "Favorite Works / Songs",
+      "favoriteScene": "Unforgettable Episodes",
+      "appealPoint": "Oshi's Appeal",
+      "future": "Future Goals"
+    },
+    "fields": {
+      "name": "Name",
+      "oshiName": "Oshi's Name",
+      "fanName": "Fan Name",
+      "startDate": "Fan Since",
+      "photoAlt": "Oshi's Photo"
+    }
+  },
+  "adModal": {
+    "title": "Displaying Advertisement",
+    "adArea": "Google AdSense Ad Area",
+    "placeholder": "Ad code will be placed here when implemented",
+    "countdown": "PDF download will start in 5 seconds"
+  },
+  "error": {
+    "title": "An Error Occurred",
+    "message": "We apologize. An unexpected error has occurred.",
+    "reload": "Reload Page",
+    "imageFormat": "Unsupported image format. Please select JPEG, PNG, or WebP.",
+    "imageSize": "File size is too large. Please select an image under 5MB.",
+    "fileReadFailed": "Failed to read file"
+  },
+  "pdf": {
+    "fileName": "oshi-resume.pdf"
+  },
+  "locale": {
+    "ja": "日本語",
+    "en": "English"
+  }
+}
