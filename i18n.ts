@@ -1,14 +1,25 @@
 import { getRequestConfig } from "next-intl/server";
+import { cookies } from "next/headers";
+import {
+  locales,
+  defaultLocale,
+  LOCALE_COOKIE_NAME,
+  type Locale,
+} from "./i18n-config";
 
-// Can be imported from a shared config
-export const locales = ["ja", "en"] as const;
-export type Locale = (typeof locales)[number];
-
-export const defaultLocale: Locale = "ja";
+// Re-export for backward compatibility
+export { locales, defaultLocale, LOCALE_COOKIE_NAME, type Locale } from "./i18n-config";
 
 export default getRequestConfig(async () => {
-  // Always use the default locale (no path-based routing)
-  const locale = defaultLocale;
+  // Read locale from cookie
+  const cookieStore = await cookies();
+  const cookieLocale = cookieStore.get(LOCALE_COOKIE_NAME)?.value;
+
+  // Use cookie value if valid, otherwise default
+  const locale: Locale =
+    cookieLocale && locales.includes(cookieLocale as Locale)
+      ? (cookieLocale as Locale)
+      : defaultLocale;
 
   return {
     locale,

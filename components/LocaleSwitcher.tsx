@@ -1,22 +1,17 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname, useRouter } from "next/navigation";
-import { locales } from "@/i18n";
+import { locales, LOCALE_COOKIE_NAME } from "@/i18n-config";
 
 export function LocaleSwitcher() {
   const t = useTranslations("locale");
   const locale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
 
   const handleLocaleChange = (newLocale: string) => {
-    // Remove current locale from pathname
-    const segments = pathname.split("/");
-    segments[1] = newLocale;
-    const newPathname = segments.join("/");
-
-    router.push(newPathname);
+    // Save locale to cookie (expires in 1 year)
+    document.cookie = `${LOCALE_COOKIE_NAME}=${newLocale};path=/;max-age=${60 * 60 * 24 * 365}`;
+    // Reload page to apply new locale
+    window.location.reload();
   };
 
   return (
