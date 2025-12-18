@@ -9,7 +9,13 @@ import { TemplateField, TemplateTextArea } from "../TemplateField";
 export function SimpleTemplate({ formData }: TemplateProps) {
   const t = useTranslations("resume");
 
-  const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
+  const Section = ({
+    title,
+    children,
+  }: {
+    title: string;
+    children: React.ReactNode;
+  }) => (
     <div className="mb-8">
       <h3 className="text-lg font-bold text-zinc-900 mb-4 pb-2 border-b border-zinc-200">
         {title}
@@ -29,7 +35,9 @@ export function SimpleTemplate({ formData }: TemplateProps) {
       {/* 氏名と写真 */}
       <div className="mb-8 flex items-start justify-between gap-6">
         <div className="flex-1">
-          {formData.name && <TemplateField label={t("fields.name")} value={formData.name} />}
+          {formData.name && (
+            <TemplateField label={t("fields.name")} value={formData.name} />
+          )}
         </div>
         {formData.photo && (
           <div className="flex-shrink-0">
@@ -48,9 +56,22 @@ export function SimpleTemplate({ formData }: TemplateProps) {
       {formData.oshiName && (
         <Section title={t("sections.oshiInfo")}>
           <div className="space-y-3">
-            <TemplateField label={t("fields.oshiName")} value={formData.oshiName} />
-            {formData.fanName && <TemplateField label={t("fields.fanName")} value={formData.fanName} />}
-            {formData.startDate && <TemplateField label={t("fields.startDate")} value={formData.startDate} />}
+            <TemplateField
+              label={t("fields.oshiName")}
+              value={formData.oshiName}
+            />
+            {formData.fanName && (
+              <TemplateField
+                label={t("fields.fanName")}
+                value={formData.fanName}
+              />
+            )}
+            {formData.startDate && (
+              <TemplateField
+                label={t("fields.startDate")}
+                value={formData.startDate}
+              />
+            )}
           </div>
         </Section>
       )}

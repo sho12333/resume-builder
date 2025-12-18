@@ -20,9 +20,7 @@ export function Header() {
               <h1 className="text-2xl font-bold text-zinc-100 tracking-tight">
                 {t("title")}
               </h1>
-              <p className="text-sm text-zinc-500">
-                {t("subtitle")}
-              </p>
+              <p className="text-sm text-zinc-500">{t("subtitle")}</p>
             </div>
           </div>
 
