@@ -7,8 +7,10 @@ const nextConfig: NextConfig = {
   // Required for OpenNext/Cloudflare Workers deployment
   output: "standalone",
   images: {
-    unoptimized: true, // 画像最適化を無効化
+    unoptimized: true,
   },
+
+  serverExternalPackages: ["@resvg/resvg-js"],
 };
 
 export default withNextIntl(nextConfig);
