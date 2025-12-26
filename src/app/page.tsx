@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { useTheme } from "@/providers/ThemeProvider";
 
 type Template = "simple" | "geometric" | "floral" | "pop";
 
@@ -55,6 +56,7 @@ const templateNames: Record<Template, string> = {
 };
 
 export default function Home() {
+	const { theme, toggleTheme } = useTheme();
 	const [template, setTemplate] = useState<Template>("simple");
 	const [formData, setFormData] = useState<ResumeData>({
 		name: "",
@@ -134,7 +136,7 @@ export default function Home() {
 	const style = templateStyles[template];
 
 	return (
-		<div className="min-h-screen bg-gray-100">
+		<div className="min-h-screen bg-page-bg transition-colors duration-300">
 			{/* パターン用CSS */}
 			<style jsx global>{`
 				.geometric-pattern {
@@ -150,7 +152,22 @@ export default function Home() {
 
 			{/* ヘッダー */}
 			<header className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white py-6 shadow-lg">
-				<div className="container mx-auto px-4">
+				<div className="container mx-auto px-4 relative">
+					<button
+						onClick={toggleTheme}
+						className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+						aria-label={theme === "light" ? "ダークモードに切り替え" : "ライトモードに切り替え"}
+					>
+						{theme === "light" ? (
+							<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+							</svg>
+						) : (
+							<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+							</svg>
+						)}
+					</button>
 					<h1 className="text-3xl font-bold text-center">
 						推しレジュメ
 						<span className="text-lg ml-2 opacity-80">oshiresume</span>
@@ -164,14 +181,14 @@ export default function Home() {
 			<main className="container mx-auto px-4 py-8">
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 					{/* 左側: 入力フォーム */}
-					<div className="bg-white rounded-xl shadow-lg p-6">
-						<h2 className="text-xl font-bold text-gray-800 mb-6 pb-2 border-b-2 border-pink-300">
+					<div className="bg-card-bg rounded-xl shadow-lg p-6 transition-colors duration-300">
+						<h2 className="text-xl font-bold text-foreground mb-6 pb-2 border-b-2 border-pink-300">
 							推し情報入力
 						</h2>
 
 						{/* テンプレート選択 */}
 						<div className="mb-6">
-							<label className="block text-sm font-medium text-gray-700 mb-2">
+							<label className="block text-sm font-medium text-muted mb-2">
 								テンプレート
 							</label>
 							<div className="grid grid-cols-2 gap-2">
@@ -182,8 +199,8 @@ export default function Home() {
 										onClick={() => setTemplate(t)}
 										className={`px-4 py-2 rounded-lg border-2 transition-all ${
 											template === t
-												? "border-purple-500 bg-purple-50 text-purple-700"
-												: "border-gray-200 hover:border-purple-300"
+												? "border-purple-500 bg-purple-500/10 text-purple-500"
+												: "border-card-border text-foreground hover:border-purple-300"
 										}`}
 									>
 										{templateNames[t]}
@@ -194,21 +211,21 @@ export default function Home() {
 
 						{/* 画像アップロード */}
 						<div className="mb-4">
-							<label className="block text-sm font-medium text-gray-700 mb-2">
+							<label className="block text-sm font-medium text-muted mb-2">
 								推しの画像
 							</label>
 							<input
 								type="file"
 								accept="image/*"
 								onChange={handleImageChange}
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+								className="w-full px-3 py-2 border border-input-border bg-input-bg text-foreground rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
 							/>
 						</div>
 
 						{/* 基本情報 */}
 						<div className="space-y-4">
 							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-1">
+								<label className="block text-sm font-medium text-muted mb-1">
 									推しの名前 *
 								</label>
 								<input
@@ -217,12 +234,12 @@ export default function Home() {
 									value={formData.name}
 									onChange={handleInputChange}
 									placeholder="例: 山田太郎"
-									className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+									className="w-full px-4 py-2 border border-input-border bg-input-bg text-foreground rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
 								/>
 							</div>
 
 							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-1">
+								<label className="block text-sm font-medium text-muted mb-1">
 									ふりがな
 								</label>
 								<input
@@ -231,19 +248,19 @@ export default function Home() {
 									value={formData.furigana}
 									onChange={handleInputChange}
 									placeholder="例: やまだ たろう"
-									className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+									className="w-full px-4 py-2 border border-input-border bg-input-bg text-foreground rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
 								/>
 							</div>
 
 							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-1">
+								<label className="block text-sm font-medium text-muted mb-1">
 									推しジャンル
 								</label>
 								<select
 									name="genre"
 									value={formData.genre}
 									onChange={handleInputChange}
-									className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+									className="w-full px-4 py-2 border border-input-border bg-input-bg text-foreground rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
 								>
 									<option value="">選択してください</option>
 									<option value="アイドル">アイドル</option>
@@ -258,7 +275,7 @@ export default function Home() {
 							</div>
 
 							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-1">
+								<label className="block text-sm font-medium text-muted mb-1">
 									推し歴（いつから）
 								</label>
 								<input
@@ -267,12 +284,12 @@ export default function Home() {
 									value={formData.since}
 									onChange={handleInputChange}
 									placeholder="例: 2020年4月〜"
-									className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+									className="w-full px-4 py-2 border border-input-border bg-input-bg text-foreground rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
 								/>
 							</div>
 
 							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-1">
+								<label className="block text-sm font-medium text-muted mb-1">
 									好きなところ
 								</label>
 								<textarea
@@ -281,12 +298,12 @@ export default function Home() {
 									onChange={handleInputChange}
 									rows={3}
 									placeholder="例: 笑顔が素敵、歌がうまい、努力家..."
-									className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+									className="w-full px-4 py-2 border border-input-border bg-input-bg text-foreground rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none transition-colors"
 								/>
 							</div>
 
 							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-1">
+								<label className="block text-sm font-medium text-muted mb-1">
 									推しとの思い出
 								</label>
 								<textarea
@@ -295,12 +312,12 @@ export default function Home() {
 									onChange={handleInputChange}
 									rows={3}
 									placeholder="例: 初めてライブに行った日、握手会で話した時..."
-									className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+									className="w-full px-4 py-2 border border-input-border bg-input-bg text-foreground rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none transition-colors"
 								/>
 							</div>
 
 							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-1">
+								<label className="block text-sm font-medium text-muted mb-1">
 									推しへのメッセージ
 								</label>
 								<textarea
@@ -309,7 +326,7 @@ export default function Home() {
 									onChange={handleInputChange}
 									rows={3}
 									placeholder="例: いつも元気をもらっています！これからも応援しています！"
-									className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+									className="w-full px-4 py-2 border border-input-border bg-input-bg text-foreground rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none transition-colors"
 								/>
 							</div>
 						</div>
@@ -326,9 +343,9 @@ export default function Home() {
 
 					{/* 右側: プレビュー */}
 					<div className="lg:sticky lg:top-4 lg:self-start">
-						<h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center justify-between">
+						<h2 className="text-xl font-bold text-foreground mb-4 flex items-center justify-between">
 							<span>プレビュー</span>
-							<span className="text-sm font-normal text-gray-500">
+							<span className="text-sm font-normal text-muted">
 								リアルタイム反映
 							</span>
 						</h2>
@@ -457,7 +474,7 @@ export default function Home() {
 			</main>
 
 			{/* フッター */}
-			<footer className="bg-gray-800 text-white py-4 mt-12">
+			<footer className="bg-gray-800 dark:bg-gray-900 text-white py-4 mt-12 transition-colors duration-300">
 				<div className="container mx-auto px-4 text-center">
 					<p className="text-sm opacity-80">
 						© 2025 oshiresume - 推し活をもっと楽しく
