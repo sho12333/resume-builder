@@ -457,7 +457,7 @@ export default function Home() {
                   <div
                     className={`bg-white/50 p-3 rounded border ${style.border} min-h-[60px]`}
                   >
-                    <p className="text-sm whitespace-pre-wrap">
+                    <p className="text-sm whitespace-pre-wrap break-words">
                       {formData.favoritePoints || "まだ入力されていません"}
                     </p>
                   </div>
@@ -473,7 +473,7 @@ export default function Home() {
                   <div
                     className={`bg-white/50 p-3 rounded border ${style.border} min-h-[60px]`}
                   >
-                    <p className="text-sm whitespace-pre-wrap">
+                    <p className="text-sm whitespace-pre-wrap break-words">
                       {formData.memories || "まだ入力されていません"}
                     </p>
                   </div>
@@ -489,7 +489,7 @@ export default function Home() {
                   <div
                     className={`bg-white/50 p-3 rounded border ${style.border} min-h-[60px]`}
                   >
-                    <p className="text-sm whitespace-pre-wrap">
+                    <p className="text-sm whitespace-pre-wrap break-words">
                       {formData.message || "まだ入力されていません"}
                     </p>
                   </div>
