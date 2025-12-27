@@ -95,7 +95,15 @@ export default function Home() {
     if (!previewRef.current) return;
 
     setIsExporting(true);
+
+    // PDF出力時は一時的にライトモードに切り替えて、文字とボーダーを黒で出力
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", "light");
+
     try {
+      // スタイルの再計算を待つ
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
       const canvas = await html2canvas(previewRef.current, {
         scale: 2,
         useCORS: true,
@@ -129,8 +137,15 @@ export default function Home() {
     } catch (error) {
       console.error("PDF export failed:", error);
       alert("PDF出力に失敗しました");
+    } finally {
+      // 元のテーマに戻す
+      if (currentTheme) {
+        document.documentElement.setAttribute("data-theme", currentTheme);
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+      }
+      setIsExporting(false);
     }
-    setIsExporting(false);
   };
 
   const style = templateStyles[template];
