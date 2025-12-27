@@ -331,9 +331,11 @@ export default function Home() {
                   value={formData.favoritePoints}
                   onChange={handleInputChange}
                   rows={3}
+                  maxLength={300}
                   placeholder="例: 笑顔が素敵、歌がうまい、努力家..."
                   className="w-full px-4 py-2 border border-input-border bg-input-bg text-foreground rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
                 />
+                <p className="text-xs text-muted text-right mt-1">{formData.favoritePoints.length}/300</p>
               </div>
 
               <div>
@@ -345,9 +347,11 @@ export default function Home() {
                   value={formData.memories}
                   onChange={handleInputChange}
                   rows={3}
+                  maxLength={300}
                   placeholder="例: 初めてライブに行った日、握手会で話した時..."
                   className="w-full px-4 py-2 border border-input-border bg-input-bg text-foreground rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
                 />
+                <p className="text-xs text-muted text-right mt-1">{formData.memories.length}/300</p>
               </div>
 
               <div>
@@ -359,9 +363,11 @@ export default function Home() {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={3}
+                  maxLength={300}
                   placeholder="例: いつも元気をもらっています！これからも応援しています！"
                   className="w-full px-4 py-2 border border-input-border bg-input-bg text-foreground rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
                 />
+                <p className="text-xs text-muted text-right mt-1">{formData.message.length}/300</p>
               </div>
             </div>
 
