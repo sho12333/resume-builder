@@ -122,7 +122,7 @@ export default function Home() {
       const imgHeight = canvas.height;
       const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
       const imgX = (pdfWidth - imgWidth * ratio) / 2;
-      const imgY = 10;
+      const imgY = 0;
 
       pdf.addImage(
         imgData,
@@ -130,7 +130,7 @@ export default function Home() {
         imgX,
         imgY,
         imgWidth * ratio,
-        imgHeight * ratio - 20
+        imgHeight * ratio
       );
       pdf.save(`推しレジュメ_${formData.name || "無題"}.pdf`);
     } catch (error) {
