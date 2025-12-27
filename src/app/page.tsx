@@ -352,7 +352,7 @@ export default function Home() {
 
 						<div
 							ref={previewRef}
-							className={`${style.bg} ${style.pattern} rounded-xl shadow-lg p-6 border-4 ${style.border}`}
+							className={`${style.bg} ${style.pattern} rounded-xl shadow-lg p-6 border-4 ${style.border} text-gray-900`}
 						>
 							{/* 履歴書ヘッダー */}
 							<div className="text-center mb-6">
