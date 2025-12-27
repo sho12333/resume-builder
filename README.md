@@ -31,11 +31,20 @@ npm run preview
 ## Deploy
 
 Deploy the application to Cloudflare:
- 
+
 ```bash
 npm run deploy
 # or similar package manager command
 ```
+
+### Cloudflare Dashboard Settings
+
+When deploying via Cloudflare Workers/Pages, use these settings:
+
+- **Build command:** `npm run build`
+- **Deploy command:** `npx wrangler deploy`
+
+The build command runs `opennextjs-cloudflare build` which creates the `.open-next/` directory containing the worker and assets needed for deployment.
 
 ## Learn More
 
