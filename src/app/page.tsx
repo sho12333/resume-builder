@@ -96,18 +96,17 @@ export default function Home() {
 
     setIsExporting(true);
 
-    // PDF出力時は一時的にライトモードに切り替えて、文字とボーダーを黒で出力
-    const currentTheme = document.documentElement.getAttribute("data-theme");
-    document.documentElement.setAttribute("data-theme", "light");
-
     try {
-      // スタイルの再計算を待つ
-      await new Promise((resolve) => setTimeout(resolve, 50));
-
+      // oncloneを使用して、キャプチャ用のクローンDOMにのみライトモードを適用
+      // これにより元の画面は変更されず、ちらつきが発生しない
       const canvas = await html2canvas(previewRef.current, {
         scale: 2,
         useCORS: true,
         logging: false,
+        onclone: (clonedDoc) => {
+          // クローンされたドキュメントにライトモードを適用
+          clonedDoc.documentElement.setAttribute("data-theme", "light");
+        },
       });
 
       const imgData = canvas.toDataURL("image/png");
@@ -138,12 +137,6 @@ export default function Home() {
       console.error("PDF export failed:", error);
       alert("PDF出力に失敗しました");
     } finally {
-      // 元のテーマに戻す
-      if (currentTheme) {
-        document.documentElement.setAttribute("data-theme", currentTheme);
-      } else {
-        document.documentElement.removeAttribute("data-theme");
-      }
       setIsExporting(false);
     }
   };
