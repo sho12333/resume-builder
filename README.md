@@ -31,7 +31,7 @@ npm run preview
 ## Deploy
 
 Deploy the application to Cloudflare:
-
+ 
 ```bash
 npm run deploy
 # or similar package manager command
